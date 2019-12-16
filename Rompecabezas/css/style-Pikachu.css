@@ -1,0 +1,117 @@
+body {
+    font-family: Arial, sans-serif;
+    width: 980px;
+    margin: 2% auto;
+    min-height: 100%;
+    background-image: url(../images/Pikachu/Pikachu-fondo.jpg);
+}
+
+ul {
+    padding-left: 0;
+    list-style: none;
+    font-family: 'Shojumaru', cursive;
+    color: rgb(185, 62, 62)
+}
+
+li {
+    padding: 5px 0;
+    animation: fadein 5s;
+}
+
+li::before {
+    content: " - ";
+    color: rgb(182, 44, 62);
+}
+
+.col-40,
+.col-60 {
+    display: table-cell;
+    margin: 0;
+    vertical-align: top;
+}
+
+.col-40 {
+    background: #FFF;
+    padding: 30px;
+    color: #000;
+    border: solid 2px black;
+}
+
+.col-60 {
+    background: #E84A5F;
+    border: solid 3px black;
+}
+
+#flecha {
+    font-size: 60px;
+    padding-top: 20px;
+}
+
+.texto-centrado {
+    text-align: center;
+}
+
+#juego div {
+    text-align: center;
+    animation: fadein 2s;
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+#juego {
+    width: 600px;
+    height: 600px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.pieza {
+    width: 200px;
+    height: 200px;
+}
+
+.pieza img {
+    width: 100%;
+}
+
+.objetivo-final {
+    width: 150px;
+    height: 150px;
+    border: solid 1px black;
+    margin: 15px;
+}
+
+h2 {
+    font-family: 'Shojumaru', cursive;
+    font-size: 20px;
+    margin: auto;
+    color: rgb(218, 59, 32);
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    font-family: 'Shojumaru', cursive;
+}
+
+.button {
+    background-color: rgb(243, 238, 232);
+    border-radius: 5px;
+    color: tomato;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 20px;
+    margin: 4px 2px;
+}
+
+.button:hover {
+    background-color: tomato;
+    cursor: pointer;
+}
