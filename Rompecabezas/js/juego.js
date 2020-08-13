@@ -1,19 +1,19 @@
 // Arreglo que contiene las intrucciones del juego 
-var instrucciones = ["Move las piezas utilizando las direcciones (→ ↓ ← ↑).", "Arma el rompecabezas guiandote por el modelo."];
+const instrucciones = ["Move las piezas utilizando las direcciones (→ ↓ ← ↑).", "Arma el rompecabezas guiandote por el modelo."];
 
 // Arreglo para ir guardando los movimientos que se vayan realizando
-var movimientos = [];
+let movimientos = [];
 
 // Representación de la grilla. Cada número representa a una pieza.
 // El 9 es la posición vacía
-var grilla = [
+let grilla = [
     [1, 2, 3],
     [4, 5, 6],
     [7, 8, 9]
 ];
 
 
-var grillaGanadora = [
+const grillaGanadora = [
     [1, 2, 3],
     [4, 5, 6],
     [7, 8, 9]
@@ -29,7 +29,7 @@ Cada elemento de este arreglo deberá ser mostrado en la lista con id 'lista-ins
 Para eso deberás usar la función ya implementada mostrarInstruccionEnLista().
 Podés ver su implementación en la ultima parte de este codigo. */
 function mostrarInstrucciones(instrucciones) {
-    for (var i = 0; i < instrucciones.length; i++) {
+    for (let i = 0; i < instrucciones.length; i++) {
         mostrarInstruccionEnLista(instrucciones[i], "lista-instrucciones");
 
     }
@@ -45,8 +45,8 @@ function ultimaDireccion(ultimoMov) {
 /* Esta función va a chequear si el Rompecabezas esta en la posicion ganadora. 
 Existen diferentes formas de hacer este chequeo a partir de la grilla. */
 function chequearSiGano() {
-    for (var i = 0; i < grilla.length; i++) {
-        for (var j = 0; j < grilla[i].length; j++) {
+    for (let i = 0; i < grilla.length; i++) {
+        for (let j = 0; j < grilla[i].length; j++) {
             if (grilla[i][j] !== grillaGanadora[i][j]) {
                 return false;
             }
@@ -73,7 +73,7 @@ En vez de intercambiar esos valores vamos a terminar teniendo en ambas posicione
 Se te ocurre cómo solucionar esto con una variable temporal?
 */
 function intercambiarPosicionesGrilla(filaPos1, columnaPos1, filaPos2, columnaPos2) {
-    var grillaTemporal = grilla[filaPos1][columnaPos1];
+    let grillaTemporal = grilla[filaPos1][columnaPos1];
     grilla[filaPos1][columnaPos1] = grilla[filaPos2][columnaPos2]
     grilla[filaPos2][columnaPos2] = grillaTemporal;
 
@@ -155,7 +155,7 @@ entiendas perfectamente lo que estás haciendo! */
 el uso de números confusos en tu código. Para referirte a la dir
 izquierda, en vez de usar el número 37, ahora podés usar:
 codigosDireccion.IZQUIERDA. Esto facilita mucho la lectura del código. */
-var codigosDireccion = {
+const codigosDireccion = {
     IZQUIERDA: 37,
     ARRIBA: 38,
     DERECHA: 39,
@@ -167,8 +167,8 @@ el intercambio en la pantalla (DOM). Para que funcione debera estar implementada
 la funcion intercambiarPosicionesGrilla() */
 function intercambiarPosiciones(fila1, columna1, fila2, columna2) {
     // Intercambio posiciones en la grilla
-    var pieza1 = grilla[fila1][columna1];
-    var pieza2 = grilla[fila2][columna2];
+    let pieza1 = grilla[fila1][columna1];
+    let pieza2 = grilla[fila2][columna2];
 
     intercambiarPosicionesGrilla(fila1, columna1, fila2, columna2);
     intercambiarPosicionesDOM('pieza' + pieza1, 'pieza' + pieza2);
@@ -180,13 +180,13 @@ las fichas en la pantalla */
 
 function intercambiarPosicionesDOM(idPieza1, idPieza2) {
     // Intercambio posiciones en el DOM
-    var elementoPieza1 = document.getElementById(idPieza1);
-    var elementoPieza2 = document.getElementById(idPieza2);
+    let elementoPieza1 = document.getElementById(idPieza1);
+    let elementoPieza2 = document.getElementById(idPieza2);
 
-    var padre = elementoPieza1.parentNode;
+    let padre = elementoPieza1.parentNode;
 
-    var clonElemento1 = elementoPieza1.cloneNode(true);
-    var clonElemento2 = elementoPieza2.cloneNode(true);
+    let clonElemento1 = elementoPieza1.cloneNode(true);
+    let clonElemento2 = elementoPieza2.cloneNode(true);
 
     padre.replaceChild(clonElemento1, elementoPieza2);
     padre.replaceChild(clonElemento2, elementoPieza1);
@@ -216,8 +216,8 @@ function actualizarUltimoMovimiento(direccion) {
 con idLista. Se crea un elemento li dinámicamente con el texto 
 pasado con el parámetro "instrucción". */
 function mostrarInstruccionEnLista(instruccion, idLista) {
-    var ul = document.getElementById(idLista);
-    var li = document.createElement("li");
+    let ul = document.getElementById(idLista);
+    let li = document.createElement("li");
     li.textContent = instruccion;
     ul.appendChild(li);
 }
@@ -231,11 +231,11 @@ function mezclarPiezas(veces) {
         return;
     }
 
-    var direcciones = [codigosDireccion.ABAJO, codigosDireccion.ARRIBA,
+    let direcciones = [codigosDireccion.ABAJO, codigosDireccion.ARRIBA,
         codigosDireccion.DERECHA, codigosDireccion.IZQUIERDA
     ];
 
-    var direccion = direcciones[Math.floor(Math.random() * direcciones.length)];
+    let direccion = direcciones[Math.floor(Math.random() * direcciones.length)];
     moverEnDireccion(direccion);
 
     setTimeout(function() {
@@ -257,7 +257,7 @@ function capturarTeclas() {
 
             moverEnDireccion(evento.which);
 
-            var gano = chequearSiGano();
+            let gano = chequearSiGano();
             if (gano) {
                 setTimeout(function() {
                     mostrarCartelGanador();
